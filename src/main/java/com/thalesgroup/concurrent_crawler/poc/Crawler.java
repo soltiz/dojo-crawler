@@ -26,7 +26,7 @@ public class Crawler {
 	}
 	
 	public void addPageToIndex(URL url) {
-		String pageContent = client.getPageContent(url);
+		String pageContent = client.getPage(url).getContent();
 		String[] wordList = pageContent.split("\\s");
 		for (String word : wordList) {
 			if (!index.containsKey(word)) {
@@ -37,7 +37,7 @@ public class Crawler {
 	}
 	
 	public void addSubPagesToIndex(URL url) {
-		List<URL> urls = client.getPageLinks(url);
+		List<URL> urls = client.getPage(url).getLinks();
 		long start = System.currentTimeMillis();
 		ExecutorService executors = Executors.newFixedThreadPool(NB_THREADS);
 		for (final URL u: urls) {
