@@ -8,7 +8,7 @@ import com.thalesgroup.concurrent_crawler.client.SimplePageClient;
 
 public class Step2 {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		SimplePageClient pageClient = new SimplePageClient();
 		Crawler crawler = new Crawler(pageClient);
 		crawler.addPageToIndex(pageClient.getRootPageUrl());
