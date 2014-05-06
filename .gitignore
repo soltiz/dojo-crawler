@@ -3,3 +3,5 @@
 .settings
 target
 build
+.DS_Store
+/nbactions.xml
