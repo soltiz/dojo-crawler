@@ -21,7 +21,7 @@ public class RandomPage extends Page {
     }
 
     private Random getRepeatableRandom() {
-        return new Random(url.hashCode());
+        return new Random(url.toString().hashCode());
     }
 
     @Override

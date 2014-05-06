@@ -14,7 +14,7 @@ public class AdvancedPageClient extends PageClient {
 
     @Override
     public Page getPage(URL url) throws IOException {
-        Random r = new Random(url.hashCode());
+        Random r = new Random(url.toString().hashCode());
         try {
             Thread.sleep(MIN_DELAY_MILLIS + r.nextInt(MAX_DELAY_MILLIS - MIN_DELAY_MILLIS));
         } catch (InterruptedException ex) {
