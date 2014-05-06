@@ -8,8 +8,6 @@ import java.util.concurrent.TimeUnit;
 
 import com.thalesgroup.concurrent_crawler.client.PageClient;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Crawler {
 
@@ -40,7 +38,7 @@ public class Crawler {
                     try {
                         addPageToIndex(u);
                     } catch (IOException ex) {
-                        Logger.getLogger(Crawler.class.getName()).log(Level.SEVERE, "can't load page", ex);
+                        System.err.println("can't load page" + ex);
                     }
                 }
             });
