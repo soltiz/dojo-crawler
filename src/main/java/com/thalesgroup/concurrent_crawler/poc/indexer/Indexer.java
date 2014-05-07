@@ -16,43 +16,49 @@ public abstract class Indexer {
 		this.index = index;
 	}
 
-	protected Map<String, List<URL>> getIndex() {
+	final protected Map<String, List<URL>> getIndex() {
 		return index;
 	}
 
 	public abstract void addWord(String word, URL pageURL);
 
 	public void addText(String pageContent, URL pageURL) {
-	    String[] wordList = pageContent.split("\\s");
-	    for (String word : wordList) {
-	        addWord(word, pageURL);
-	    }
+		String[] wordList = pageContent.split("\\s");
+		for (String word : wordList) {
+			addWord(word, pageURL);
+		}
 	}
 
 	/**
 	 * Retourne les mots les plus utilisés, et les URL qui les contiennent
-	 *
+	 * 
 	 * @return
 	 */
 	public Map<String, List<URL>> getTopWords(int wordCount) {
-	    // Compute top words
-	    List<WordOccurences> wordsOccurences = new ArrayList<>();
-	    for (Map.Entry<String, List<URL>> e : index.entrySet()) {
-	        wordsOccurences.add(new WordOccurences(e.getKey(), e.getValue()
-	                .size()));
-	    }
-	    Collections.sort(wordsOccurences);
-	    final int nbResults = Math.min(wordCount, wordsOccurences.size());
-	    // Build real result
-	    Map<String, List<URL>> result = new HashMap<>();
-	    for (WordOccurences wo : wordsOccurences.subList(0, nbResults)) {
-	        result.put(wo.word, index.get(wo.word));
-	    }
-	    return result;
+		// Compute top words
+		List<WordOccurences> wordsOccurences = new ArrayList<>();
+		for (Map.Entry<String, List<URL>> e : index.entrySet()) {
+			wordsOccurences.add(new WordOccurences(e.getKey(), e.getValue()
+					.size()));
+		}
+		Collections.sort(wordsOccurences);
+		final int nbResults = Math.min(wordCount, wordsOccurences.size());
+		// Build real result
+		Map<String, List<URL>> result = new HashMap<>();
+		for (WordOccurences wo : wordsOccurences.subList(0, nbResults)) {
+			result.put(wo.word, index.get(wo.word));
+		}
+		return result;
 	}
 
 	public Map<String, List<URL>> getTopTenWords() {
-	    return getTopWords(10);
+		return getTopWords(10);
 	}
 
+	public void printTopTenWords() {
+		Map<String, List<URL>> result = getTopWords(10);
+		for (Map.Entry<String, List<URL>> e : result.entrySet()) {
+			System.out.println(e.getKey() + ":" + e.getValue().size());
+		}
+	}
 }
