@@ -2,6 +2,8 @@ package com.thalesgroup.concurrent_crawler.poc;
 
 import com.thalesgroup.concurrent_crawler.client.PageClient;
 import com.thalesgroup.concurrent_crawler.client.simple.SimplePageClient;
+import com.thalesgroup.concurrent_crawler.poc.crawler.Crawler;
+import com.thalesgroup.concurrent_crawler.poc.crawler.MultiThreadedCrawler;
 import com.thalesgroup.concurrent_crawler.poc.indexer.ConcurrentIndexer;
 import com.thalesgroup.concurrent_crawler.poc.indexer.Indexer;
 
@@ -16,7 +18,7 @@ public class Step2Concurrent {
     public static Indexer indexPages(URL url) throws IOException {
         PageClient pageClient = new SimplePageClient();
         Indexer indexer = new ConcurrentIndexer();
-        Crawler crawler = new Crawler(pageClient, indexer);
+        Crawler crawler = new MultiThreadedCrawler(pageClient, indexer);
         crawler.addPageToIndex(url);
         crawler.addSubPagesToIndex(url);
         return indexer;

@@ -8,6 +8,8 @@ import java.util.Map;
 
 import com.thalesgroup.concurrent_crawler.client.PageClient;
 import com.thalesgroup.concurrent_crawler.client.simple.SimplePageClient;
+import com.thalesgroup.concurrent_crawler.poc.crawler.Crawler;
+import com.thalesgroup.concurrent_crawler.poc.crawler.MultiThreadedCrawler;
 import com.thalesgroup.concurrent_crawler.poc.indexer.Indexer;
 import com.thalesgroup.concurrent_crawler.poc.indexer.NonConcurrentIndexer;
 
@@ -16,7 +18,7 @@ public class Step2NonConcurrent {
     public static Indexer indexPages(URL url) throws IOException {
         PageClient pageClient = new SimplePageClient();
         Indexer indexer = new NonConcurrentIndexer();
-        Crawler crawler = new Crawler(pageClient, indexer);
+        Crawler crawler = new MultiThreadedCrawler(pageClient, indexer);
         crawler.addPageToIndex(url);
         crawler.addSubPagesToIndex(url);
         return indexer;
