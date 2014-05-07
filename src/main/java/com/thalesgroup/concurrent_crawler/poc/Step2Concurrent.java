@@ -2,17 +2,20 @@ package com.thalesgroup.concurrent_crawler.poc;
 
 import com.thalesgroup.concurrent_crawler.client.PageClient;
 import com.thalesgroup.concurrent_crawler.client.simple.SimplePageClient;
+import com.thalesgroup.concurrent_crawler.poc.indexer.ConcurrentIndexer;
+import com.thalesgroup.concurrent_crawler.poc.indexer.Indexer;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
 
-public class Step2 {
+public class Step2Concurrent {
 
     public static Indexer indexPages(URL url) throws IOException {
         PageClient pageClient = new SimplePageClient();
-        Indexer indexer = new Indexer();
+        Indexer indexer = new ConcurrentIndexer();
         Crawler crawler = new Crawler(pageClient, indexer);
         crawler.addPageToIndex(url);
         crawler.addSubPagesToIndex(url);

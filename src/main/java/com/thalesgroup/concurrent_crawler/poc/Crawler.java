@@ -7,6 +7,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 import com.thalesgroup.concurrent_crawler.client.PageClient;
+import com.thalesgroup.concurrent_crawler.poc.indexer.Indexer;
+
 import java.io.IOException;
 
 public class Crawler {

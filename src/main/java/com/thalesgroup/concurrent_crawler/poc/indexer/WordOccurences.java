@@ -1,4 +1,4 @@
-package com.thalesgroup.concurrent_crawler.poc;
+package com.thalesgroup.concurrent_crawler.poc.indexer;
 
 public class WordOccurences implements Comparable<WordOccurences> {
 
