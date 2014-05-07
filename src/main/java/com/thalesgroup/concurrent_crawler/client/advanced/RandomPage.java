@@ -11,7 +11,7 @@ import com.thalesgroup.concurrent_crawler.client.Page;
 public class RandomPage extends Page {
 
     private final int MAX_WORDS = 2000;
-    private final int MAX_EXTERNAL_LINKS = 100;
+    private final int MAX_EXTERNAL_LINKS = 1000;
     private final int MAX_SELF_LINKS = 5;
 
     private final URL url;
