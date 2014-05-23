@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
@@ -24,6 +26,7 @@ public final class Dictionary {
             while ((line = br.readLine()) != null) {
                 dict.add(line);
             }
+            Collections.shuffle(dict, new Random(0));
         } catch (IOException ex) {
             System.err.println("can't load dictionary" + ex);
             throw new RuntimeException("can't load dictionary", ex);
@@ -35,6 +38,7 @@ public final class Dictionary {
     }
 
     public String getRandomWord(Random generator) {
-        return dict.get(generator.nextInt(dict.size()));
+    	int random = (int)(Math.min(Math.abs(generator.nextGaussian())/10000*dict.size(), dict.size()-1));
+        return dict.get(random);
     }
 }
