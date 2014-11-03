@@ -42,16 +42,16 @@ public class DictionaryTest extends TestCase {
     public void testGetRandomWord() {
         Dictionary instance = Dictionary.getInstance();
         Random generator = new Random(0x1234);
-        assertEquals("forborne", instance.getRandomWord(generator));
-        assertEquals("lunacy", instance.getRandomWord(generator));
-        assertEquals("frae", instance.getRandomWord(generator));
+        assertEquals("evolve", instance.getRandomWord(generator));
+        assertEquals("curches", instance.getRandomWord(generator));
+        assertEquals("federals", instance.getRandomWord(generator));
     }
 
     public void testRepeatableGetRandomWord() {
         Dictionary instance = Dictionary.getInstance();
-        assertEquals("chicos", instance.getRandomWord(new Random(0x123456)));
-        assertEquals("chicos", instance.getRandomWord(new Random(0x123456)));
-        assertEquals("vinified", instance.getRandomWord(new Random(0x12345678)));
+        assertEquals("saw", instance.getRandomWord(new Random(0x123456)));
+        assertEquals("saw", instance.getRandomWord(new Random(0x123456)));
+        assertEquals("primas", instance.getRandomWord(new Random(0x12345678)));
     }
 
 }

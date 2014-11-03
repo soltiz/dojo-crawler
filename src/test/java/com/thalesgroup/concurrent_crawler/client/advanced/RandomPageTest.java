@@ -37,7 +37,7 @@ public class RandomPageTest extends TestCase {
     public void testGetText() throws MalformedURLException {
         URL url = new URL("http://www.google.com");
         Page instance = new RandomPage(url);
-        String expResult = "glonoin lock pea gem woosh chars peonage jaculate ajiva achoo butles";
+        String expResult = "bunch pointman rutiles erudite rutiles bezazzes federals murkly player pointman erudite";
         String result = instance.getText();
         assertTrue(result, result.startsWith(expResult));
     }
