@@ -7,6 +7,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+
+import javax.sql.rowset.spi.SyncResolver;
 
 import com.thalesgroup.concurrent_crawler.client.Page;
 
@@ -16,7 +20,7 @@ public class TopTen {
 
 	private Map<String, Integer> wordsMap = new HashMap<>();
 
-	public void addPage(Page page){
+	public void addPage(Page page) {
 		// Préconditions
 		if (page == null) {
 			return;
@@ -26,14 +30,16 @@ public class TopTen {
 		List<String> lstWords = getWordsFromText(page.getText());
 
 		// Récupération des occurences des mots dans une map
-		for (String word : lstWords) {
-			int occurence = 1;
-			if (wordsMap.containsKey(word)) {
-				occurence = wordsMap.get(word) + 1;
+		synchronized (wordsMap) {
+			for (String word : lstWords) {
+				int occurence = 1;
+				if (wordsMap.containsKey(word)) {
+					occurence = wordsMap.get(word) + 1;
+				}
+				wordsMap.put(word, occurence);
 			}
-			wordsMap.put(word, occurence);
 		}
-		
+
 	}
 
 	public List<Word> getTopTen() {
@@ -81,6 +87,5 @@ public class TopTen {
 		}
 
 	}
-
 
 }
