@@ -17,7 +17,13 @@ Story 1 :
 	
 Story 2:
 
-	Given a single page containing text, display the ten words most used in the page
+	Given a single page containing text, display the ten unique words most used in the page
+	
+	
+	
+	
+	
+	
 	
 Story 3: 
 	Beside each world, display the  the number of occurences of the word in the page

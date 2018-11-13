@@ -7,10 +7,12 @@ import java.util.List;
 import com.thalesgroup.concurrent_crawler.client.Page;
 
 public class SelfReferencingPage extends Page {
+	
 
     private final int NB_LINKS = 10000;
 
     private final URL url;
+    private String textContent ="titi toto tata titi titi toto tata titi titi toto tata titi titi toto tata titi";
 
     public SelfReferencingPage(URL url) {
         this.url = url;
@@ -18,8 +20,14 @@ public class SelfReferencingPage extends Page {
 
     @Override
     public String getText() {
-        return "titi toto tata titi titi toto tata titi titi toto tata titi titi toto tata titi";
+        return textContent;
     }
+    
+  
+    public String addText(String extension) {
+        return textContent+extension;
+    }
+   
 
     @Override
     public List<URL> getLinks() {
